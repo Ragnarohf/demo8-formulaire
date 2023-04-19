@@ -1,1 +1,19 @@
-<p>saisie-personne works!</p>
+<div>
+  <h3>Le formulaire</h3>
+  <form [formGroup]="angularForm">
+    <div>
+      <label class="center-block">Nom:</label>
+      <input [ngClass]="{'form-control':true,'is-invalid': nomInvalide()}" formControlName="nom" type="text">
+    </div>
+    <div>
+      <label class="center-block">Prenom:</label>
+      <input [ngClass]="{'form-control':true,'is-invalid': prenomInvalide()}" formControlName="prenom" type="text">
+    </div>
+    <div *ngIf="nomInvalide()" class="alert alert-danger">Le nom est obligatoire</div>
+    <div *ngIf="prenomInvalide()" class="alert alert-danger">Le prenom est obligatoire et doit comporter au moins 5
+      caracteres
+    </div>
+    <button (click)="onEnregister()" [disabled]="problemeValidation()" class="btn-success" type="submit">Enregistrer
+    </button>
+  </form>
+</div>
